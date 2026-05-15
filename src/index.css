@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    margin: 0;
+}
+
+@layer components {
+  .bg-app         { background-color: #F9F9F9; }
+  .bg-sidebar     { background-color: #FFFFFF; }
+  .bg-accent      { background-color: #7C3AED; }
+  .bg-accent-lt   { background-color: #EDE9FE; }
+  .bg-upgrade     { background-color: #374151; }
+  .bg-stat-red    { background-color: #FEE2E2; }
+  .bg-stat-teal   { background-color: #CCFBF1; }
+  .bg-stat-green  { background-color: #DCFCE7; }
+  .bg-stat-purple { background-color: #EDE9FE; }
+  .text-primary       { color: #000000; }
+  .text-muted         { color: #6B7280; }
+  .text-accent        { color: #7C3AED; }
+  .text-stat-red      { color: #EF4444; }
+  .text-stat-teal     { color: #14B8A6; }
+  .text-stat-green    { color: #22C55E; }
+  .text-stat-purple   { color: #8B5CF6; }
+  .border-base        { border-color: #E5E7EB; }
+}
