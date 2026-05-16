@@ -1,8 +1,9 @@
+import SideBar from "../components/SideBar";
 
 const Dashboard = () => {
     return (
-        <div className='bg-app'>
-            sidebar
+        <div className=''>
+            <SideBar />
             content
         </div>
     );
