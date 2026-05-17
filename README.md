@@ -1,73 +1,129 @@
-# React + TypeScript + Vite
+# Hintro Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A mock frontend dashboard for [Hintro](https://www.hintro.ai), built as part of a frontend assignment. The UI is based on the provided Figma design and consumes mock APIs to display real and empty user states.
 
-Currently, two official plugins are available:
+**GitHub:** https://github.com/TamimKhan-dev/Dashboard-Frontend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Tool | Purpose |
+|------|---------|
+| React + Vite | Frontend framework and build tool |
+| TypeScript | Type safety |
+| Tailwind CSS | Styling with consistent design tokens |
+| React Router v6 | Client-side routing |
+| Axios | API requests |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Login page with user switching (u1 / u2)
+- Sidebar navigation (desktop + mobile responsive)
+- Dashboard UI with stat cards and recent calls
+- Empty state for u1 (new user)
+- Populated state for u2 (active user)
+- Fully responsive across desktop, tablet, and mobile
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting Started
+
+### Prerequisites
+
+- Node.js v18+
+- npm v9+
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/TamimKhan-dev/Dashboard-Frontend.git
+
+# Navigate into the project
+cd Dashboard-Frontend
+
+# Install dependencies
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Environment Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Create a `.env` file in the root of the project:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_API_BASE_URL=https://mock-backend-hintro.vercel.app
 ```
+
+### Run Locally
+
+```bash
+npm run dev
+```
+
+The app will be running at `http://localhost:5173`
+
+---
+
+## User Switching
+
+The app supports two mock users:
+
+| User | Email to use at Login | Description |
+|------|-----------------------|-------------|
+| u1 | john@example.com | New user — shows empty states |
+| u2 | any other email | Active user — shows populated data |
+
+Login with either email to see the corresponding dashboard state.
+
+---
+
+## Project Structure
+
+```
+src/
+├── api/              # Axios instance and API endpoint functions
+├── context/          # UserContext (userId state)
+├── hooks/            # Custom hooks (useUser)
+├── pages/            # Login and Dashboard pages
+├── components/       # Reusable UI components (Sidebar, StatCard, etc.)
+├── utils/            # Formatting helpers (duration, date, last session)
+├── types/            # TypeScript interfaces
+└── main.tsx          # App entry point
+```
+
+---
+
+## Conventions & Assumptions
+
+- All colors are defined in `tailwind.config.ts` under `theme.extend.colors` — no hardcoded hex values in components
+- The active user (`u2`) is identified at login and stored via `localStorage`
+- API calls use the `x-user-id` header to switch between users
+- `averageDuration` from the API is in seconds and is converted to `Xm Ysec` format for display
+- `lastSession` is converted to a human-readable format (e.g. "2 days ago")
+- Feedback is stored in `localStorage` (UI in progress)
+
+---
+
+## API Reference
+
+Base URL: `https://mock-backend-hintro.vercel.app`
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/auth/profile` | User profile |
+| `GET /api/auth/dashboard` | Dashboard + usage data |
+| `GET /api/call-sessions/stats` | Call statistics |
+| `GET /api/call-sessions?limit=10` | Call history |
+
+All endpoints require the `x-user-id: u1` or `x-user-id: u2` header.
+
+---
+
+## Author
+
+**Tamim Khan**
+GitHub: [@TamimKhan-dev](https://github.com/TamimKhan-dev)
+LinkedIn: [linkedin.com/in/tamimkhan-dev](https://linkedin.com/in/tamimkhan-dev)
