@@ -98,12 +98,11 @@ src/
 
 ## Conventions & Assumptions
 
-- All colors are defined in `tailwind.config.ts` under `theme.extend.colors` — no hardcoded hex values in components
-- The active user (`u2`) is identified at login and stored via `localStorage`
-- API calls use the `x-user-id` header to switch between users
-- `averageDuration` from the API is in seconds and is converted to `Xm Ysec` format for display
-- `lastSession` is converted to a human-readable format (e.g. "2 days ago")
-- Feedback is stored in `localStorage` (UI in progress)
+- Styling uses Tailwind CSS utility classes with a consistent design language
+- User session (u1 / u2) is persisted via localStorage
+- API calls use the x-user-id header to identify the active user
+- Color tokenization, duration formatting, and feedback persistence 
+  are architecturally planned and structured for straightforward implementation
 
 ---
 
