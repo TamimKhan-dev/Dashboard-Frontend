@@ -15,9 +15,9 @@ body {
 }
 
 @layer components {
-  .bg-app         { background-color: #F9F9F9; }
+  .bg-color-base  { background-color: #000000; }
   .bg-sidebar     { background-color: #FFFFFF; }
-  .bg-hover-accent{ background-color: #7C3AED; }
+  .bg-custom-accent{ background-color: #7C3AED; }
   .bg-accent-lt   { background-color: #EDE9FE; }
   .bg-upgrade     { background-color: #808080; }
   .bg-stat-red    { background-color: #FEE2E2; }
